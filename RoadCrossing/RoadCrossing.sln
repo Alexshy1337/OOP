@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoadCrossing", "RoadCrossing\RoadCrossing.csproj", "{6D22FE8F-4576-49E3-B683-D981E9A785B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelClasses", "ModelClasses\ModelClasses.csproj", "{B3D8F157-1A02-4AD8-BA7A-F4D5A962356F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6D22FE8F-4576-49E3-B683-D981E9A785B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D22FE8F-4576-49E3-B683-D981E9A785B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D22FE8F-4576-49E3-B683-D981E9A785B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D22FE8F-4576-49E3-B683-D981E9A785B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3D8F157-1A02-4AD8-BA7A-F4D5A962356F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3D8F157-1A02-4AD8-BA7A-F4D5A962356F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3D8F157-1A02-4AD8-BA7A-F4D5A962356F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3D8F157-1A02-4AD8-BA7A-F4D5A962356F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {270FE1C4-1849-4FE4-9134-06FAA8B4F5B1}
+	EndGlobalSection
+EndGlobal

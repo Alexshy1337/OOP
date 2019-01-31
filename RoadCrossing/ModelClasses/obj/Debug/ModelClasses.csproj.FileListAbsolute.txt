@@ -1,0 +1,6 @@
+C:\Users\Alex Shy\source\repos\RoadCrossing\ModelClasses\bin\Debug\ModelClasses.dll
+C:\Users\Alex Shy\source\repos\RoadCrossing\ModelClasses\bin\Debug\ModelClasses.pdb
+C:\Users\Alex Shy\source\repos\RoadCrossing\ModelClasses\obj\Debug\ModelClasses.csprojAssemblyReference.cache
+C:\Users\Alex Shy\source\repos\RoadCrossing\ModelClasses\obj\Debug\ModelClasses.csproj.CoreCompileInputs.cache
+C:\Users\Alex Shy\source\repos\RoadCrossing\ModelClasses\obj\Debug\ModelClasses.dll
+C:\Users\Alex Shy\source\repos\RoadCrossing\ModelClasses\obj\Debug\ModelClasses.pdb
