@@ -16,6 +16,7 @@ namespace RoadCrossing
         public ModelsForm()
         {
             InitializeComponent();
+            models = new List<RoadModel>();
         }
 
         List<RoadModel> models;
@@ -23,30 +24,66 @@ namespace RoadCrossing
 
         private void Panel1_Paint(object sender, PaintEventArgs e)
         {
-            Bitmap b = new Bitmap(Panel1.Size.Width, Panel1.Size.Height);
-            models[0].DrawUnit.DrawFrame(b);
-            //RoadModel.DrawFrame();
+            if(!SB1.Visible)
+            {
+                e.Graphics.DrawImage(Properties.Resources.BackgroundImg, new Rectangle(0, 0, Panel1.Width, Panel1.Height));
+
+            }
+
+
+
+
+            /*
+             
+             
+                         try
+            {
+                Bitmap b = new Bitmap(Panel1.Size.Width, Panel1.Size.Height);
+                models[0].DrawUnit.DrawFrame(b);
+                e.Graphics.DrawImage(b, 0, 0);
+                b.Dispose();
+            }
+            catch (NullReferenceException) { }
+
+             
+             */
+
         }
 
         private void Panel2_Paint(object sender, PaintEventArgs e)
         {
+            if (!SB2.Visible)
+            {
+                e.Graphics.DrawImage(Properties.Resources.BackgroundImg, new Rectangle(0, 0, Panel2.Width, Panel2.Height));
+
+            }
 
         }
 
         private void Panel3_Paint(object sender, PaintEventArgs e)
         {
+            if (!SB3.Visible)
+            {
+                e.Graphics.DrawImage(Properties.Resources.BackgroundImg, new Rectangle(0, 0, Panel3.Width, Panel3.Height));
+
+            }
 
         }
 
         private void Panel4_Paint(object sender, PaintEventArgs e)
         {
+            if (!SB4.Visible)
+            {
+                e.Graphics.DrawImage(Properties.Resources.BackgroundImg, new Rectangle(0, 0, Panel4.Width, Panel4.Height));
+
+            }
 
         }
 
         private void SB1_Click(object sender, EventArgs e)
         {
-            //models.Add(new RoadModel());
-            //models[0] = new RoadModel();
+            models.Add(new RoadModel());//models[0] = new RoadModel();
+            models.Last().DrawUnit = new Drawer();
             Panel1.Invalidate();
             SB1.Visible = false;
         }
@@ -65,8 +102,8 @@ namespace RoadCrossing
 
         private void SB4_Click(object sender, EventArgs e)
         {
-            Panel3.Invalidate();
-            SB3.Visible = false;
+            Panel4.Invalidate();
+            SB4.Visible = false;
         }
     }
 }

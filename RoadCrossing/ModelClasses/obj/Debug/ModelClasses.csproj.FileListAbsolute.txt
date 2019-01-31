@@ -4,3 +4,9 @@ C:\Users\Alex Shy\source\repos\RoadCrossing\ModelClasses\obj\Debug\ModelClasses.
 C:\Users\Alex Shy\source\repos\RoadCrossing\ModelClasses\obj\Debug\ModelClasses.csproj.CoreCompileInputs.cache
 C:\Users\Alex Shy\source\repos\RoadCrossing\ModelClasses\obj\Debug\ModelClasses.dll
 C:\Users\Alex Shy\source\repos\RoadCrossing\ModelClasses\obj\Debug\ModelClasses.pdb
+e:\ЯИСП\OOP\RoadCrossing\ModelClasses\bin\Debug\ModelClasses.dll
+e:\ЯИСП\OOP\RoadCrossing\ModelClasses\bin\Debug\ModelClasses.pdb
+e:\ЯИСП\OOP\RoadCrossing\ModelClasses\obj\Debug\ModelClasses.csprojAssemblyReference.cache
+e:\ЯИСП\OOP\RoadCrossing\ModelClasses\obj\Debug\ModelClasses.csproj.CoreCompileInputs.cache
+e:\ЯИСП\OOP\RoadCrossing\ModelClasses\obj\Debug\ModelClasses.dll
+e:\ЯИСП\OOP\RoadCrossing\ModelClasses\obj\Debug\ModelClasses.pdb

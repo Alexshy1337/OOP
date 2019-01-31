@@ -65,6 +65,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -84,6 +85,15 @@
       <Project>{b3d8f157-1a02-4ad8-ba7a-f4d5a962356f}</Project>
       <Name>ModelClasses</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BackgroundImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CarImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ManImg.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

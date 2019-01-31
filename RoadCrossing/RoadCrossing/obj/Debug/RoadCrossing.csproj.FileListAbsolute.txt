@@ -11,3 +11,16 @@ C:\Users\Alex Shy\source\repos\RoadCrossing\RoadCrossing\obj\Debug\RoadCrossing.
 C:\Users\Alex Shy\source\repos\RoadCrossing\RoadCrossing\bin\Debug\ModelClasses.dll
 C:\Users\Alex Shy\source\repos\RoadCrossing\RoadCrossing\bin\Debug\ModelClasses.pdb
 C:\Users\Alex Shy\source\repos\RoadCrossing\RoadCrossing\obj\Debug\RoadCrossing.csproj.CopyComplete
+e:\ЯИСП\OOP\RoadCrossing\RoadCrossing\bin\Debug\RoadCrossing.exe.config
+e:\ЯИСП\OOP\RoadCrossing\RoadCrossing\bin\Debug\RoadCrossing.exe
+e:\ЯИСП\OOP\RoadCrossing\RoadCrossing\bin\Debug\RoadCrossing.pdb
+e:\ЯИСП\OOP\RoadCrossing\RoadCrossing\bin\Debug\ModelClasses.dll
+e:\ЯИСП\OOP\RoadCrossing\RoadCrossing\bin\Debug\ModelClasses.pdb
+e:\ЯИСП\OOP\RoadCrossing\RoadCrossing\obj\Debug\RoadCrossing.csprojAssemblyReference.cache
+e:\ЯИСП\OOP\RoadCrossing\RoadCrossing\obj\Debug\RoadCrossing.ModelsForm.resources
+e:\ЯИСП\OOP\RoadCrossing\RoadCrossing\obj\Debug\RoadCrossing.Properties.Resources.resources
+e:\ЯИСП\OOP\RoadCrossing\RoadCrossing\obj\Debug\RoadCrossing.csproj.GenerateResource.cache
+e:\ЯИСП\OOP\RoadCrossing\RoadCrossing\obj\Debug\RoadCrossing.csproj.CoreCompileInputs.cache
+e:\ЯИСП\OOP\RoadCrossing\RoadCrossing\obj\Debug\RoadCrossing.csproj.CopyComplete
+e:\ЯИСП\OOP\RoadCrossing\RoadCrossing\obj\Debug\RoadCrossing.exe
+e:\ЯИСП\OOP\RoadCrossing\RoadCrossing\obj\Debug\RoadCrossing.pdb
