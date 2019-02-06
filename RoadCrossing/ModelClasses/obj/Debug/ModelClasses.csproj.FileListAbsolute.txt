@@ -10,3 +10,5 @@ e:\ЯИСП\OOP\RoadCrossing\ModelClasses\obj\Debug\ModelClasses.csprojAssemblyR
 e:\ЯИСП\OOP\RoadCrossing\ModelClasses\obj\Debug\ModelClasses.csproj.CoreCompileInputs.cache
 e:\ЯИСП\OOP\RoadCrossing\ModelClasses\obj\Debug\ModelClasses.dll
 e:\ЯИСП\OOP\RoadCrossing\ModelClasses\obj\Debug\ModelClasses.pdb
+E:\ЯИСП\OOP\RoadCrossing\ModelClasses\obj\Debug\ModelClasses.Properties.GraphicsRes.resources
+E:\ЯИСП\OOP\RoadCrossing\ModelClasses\obj\Debug\ModelClasses.csproj.GenerateResource.cache

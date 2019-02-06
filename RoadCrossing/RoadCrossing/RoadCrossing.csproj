@@ -86,14 +86,5 @@
       <Name>ModelClasses</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BackgroundImg.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\CarImg.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ManImg.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

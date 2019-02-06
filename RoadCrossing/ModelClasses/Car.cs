@@ -9,10 +9,15 @@ namespace ModelClasses
     public class Car
     {
         public bool CanMove { get; set; }
+        public bool LeftToRight { get; set; }
         public bool IsBrocken { get; set; }
         public int X { get; set; }
+        public int ObstacleX { get; set; }
 
-
+        public Car()
+        {
+            X = 0;
+        }
 
 
     }
