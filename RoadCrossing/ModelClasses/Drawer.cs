@@ -30,7 +30,7 @@ namespace ModelClasses
 
         void DrawMan(Graphics g, Man man)
         {
-            if(man.ToptoDown)
+            if(man.ToptoBottom)
             {
                 g.DrawImage(Properties.GraphicsRes.ManImg, new Rectangle(162, man.Y, 25, 30), new Rectangle(0, 0, 46, 61), GraphicsUnit.Pixel);
             }
@@ -45,7 +45,6 @@ namespace ModelClasses
 
         void DrawCrashService(Graphics g, CrashService cs)
         {
-            //1667x833
             if (cs.LeftToRight)
             {
                 g.DrawImage(Properties.GraphicsRes.CrashServiceImg, new Rectangle(cs.X, 50, 180, 90), new Rectangle(0, 0, 1667, 833), GraphicsUnit.Pixel);
@@ -57,7 +56,10 @@ namespace ModelClasses
                 g.DrawImage(temp, new Rectangle(cs.X, 130, 180, 90), new Rectangle(0, 0, 1667, 833), GraphicsUnit.Pixel);
                 temp.Dispose();
             }
-            //DrawCar(g, car);
+
+            //if(IsLoaded)
+
+            //DrawCrash
 
         }
 
@@ -73,24 +75,23 @@ namespace ModelClasses
         public void DrawFrame(Bitmap bit, List<Car> cars, List<Man> ppl, CrashService crashService = null, bool isGreen = false)
         {
             Graphics g = Graphics.FromImage(bit);
+
             g.DrawImage(Properties.GraphicsRes.BackgroundImg, new Rectangle(0, 0, bit.Width, bit.Height));
-            lock (cars)
-            {
-                foreach (Car c in cars)
-                    DrawCar(g, c);
-            }
-            lock (ppl)
-            {
-                foreach (Man m in ppl)
-                    DrawMan(g, m);
-            }
+            if(cars != null)
+                lock (cars)
+                {
+                    foreach (Car c in cars)
+                        DrawCar(g, c);
+                }
+            if (ppl != null)
+                lock (ppl)
+                {
+                    foreach (Man m in ppl)
+                        DrawMan(g, m);
+                }
             if (crashService != null) 
                 DrawCrashService(g, crashService);
             DrawLight(g, isGreen);
-
-
-
-
 
             g.Dispose();
         }

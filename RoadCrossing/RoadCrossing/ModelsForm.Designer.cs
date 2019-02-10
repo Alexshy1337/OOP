@@ -146,7 +146,7 @@
             // 
             // MainTimer
             // 
-            this.MainTimer.Interval = 20;
+            this.MainTimer.Interval = 10;
             this.MainTimer.Tick += new System.EventHandler(this.MainTimer_Tick);
             // 
             // ModelsForm
