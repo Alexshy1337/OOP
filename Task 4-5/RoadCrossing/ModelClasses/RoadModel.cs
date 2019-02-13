@@ -18,10 +18,9 @@ namespace ModelClasses
         public List<Man> Ppl { get; set; }
         private Thread UpdThread { get; set; }
         private Thread AddThread { get; set; }
-        event Action GreenLightEvent; //for walkers
-        event Action RedLightEvent;//for walkers
-        event Action CrashEvent; //car with car only
-        
+        event Action LightChangedEvent;
+        event Action CrashEvent;
+
         public RoadModel()
         {
             DrawUnit = new Drawer();
@@ -38,10 +37,17 @@ namespace ModelClasses
             while(true)
             {
                 if (Cars.Count < 4 && r.Next(0, 1000) > 500)
-                    Cars.Add(new Car(r.Next(0, 1000) > 500,!CurLight));
+                {
+                    Cars.Add(new Car(r.Next(0, 1000) > 500, !CurLight));
+                    LightChangedEvent += Cars.Last().ChangeState;
+                }
                 Thread.Sleep(1000);
+
                 if (Ppl.Count < 4 && r.Next(0, 1000) > 500)
+                {
                     Ppl.Add(new Man(r.Next(0, 1000) > 500, CurLight) { X = r.Next(162, 260) });
+                    LightChangedEvent += Ppl.Last().ChangeState;
+                }
                 Thread.Sleep(1200);
             }
         }
@@ -60,34 +66,32 @@ namespace ModelClasses
                 if(LightTimer > 500)
                 {
                     CurLight = !CurLight;
+                    try
+                    {
+                        LightChangedEvent();
+                    }
+                    catch (NullReferenceException) { }
                     LightTimer = 0;
                 }
                 for (int i = 0; i < Cars.Count; i++)
-                    if (Cars[i].X < -130 || Cars[i].X > 440)
+                {
+                    if (Cars[i].X < -150 || Cars[i].X > 650)
                     {
                         Cars[i].CurThread.Abort();
+                        LightChangedEvent -= Cars[i].ChangeState;
                         Cars.Remove(Cars[i]);
                     }
+                }
                 for (int i = 0; i < Ppl.Count; i++)
                 {
-                    if (Ppl[i].Y < -40 || Ppl[i].Y > 380)
+                    if (Ppl[i].Y < -50 || Ppl[i].Y > 400)
                     {
                         Ppl[i].CurThread.Abort();
+                        LightChangedEvent -= Ppl[i].ChangeState;
                         Ppl.Remove(Ppl[i]);
                     }
                 }
 
-            }
-        }
-
-        void ChangeToGreen()
-        {
-            lock (Cars)
-            {
-                foreach(Car c in Cars)
-                {
-
-                }
             }
         }
 

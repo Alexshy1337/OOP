@@ -9,6 +9,7 @@ namespace ModelClasses
     public class Man
     {
         public bool CanMove { get; set; } = true;
+        public bool DontCare { get; set; }
         public bool ToptoBottom { get; set; }
         public int Y { get; set; }
         public int X { get; set; }
@@ -38,13 +39,18 @@ namespace ModelClasses
             i = ToptoBottom ? 1 : -1;
             while (true)
             {
-                if (CanMove)
+                if (CanMove || DontCare)
                     Y += 3 * i;
-
+                if(ToptoBottom && Y > 50 || !ToptoBottom && Y < 235)
+                    DontCare = true;
 
                 Thread.Sleep(20);
             }
         }
 
+        public void ChangeState()
+        {
+            CanMove = !CanMove;
+        }
     }
 }

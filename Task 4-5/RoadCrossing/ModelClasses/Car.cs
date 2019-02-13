@@ -9,6 +9,7 @@ namespace ModelClasses
     public class Car
     {
         public bool CanMove { get; set; } = true;
+        public bool DontCare { get; set; }
         public bool LeftToRight { get; set; }
         public bool IsBrocken { get; set; }
         public int X { get; set; }
@@ -17,7 +18,8 @@ namespace ModelClasses
 
         public Car(bool movable)
         {
-            X = -100;
+            X = -130;
+            LeftToRight = true;
             CanMove = movable;
             CurThread = new Thread(new ThreadStart(Ride));
             CurThread.Start();
@@ -26,7 +28,7 @@ namespace ModelClasses
         public Car(bool lefttoright, bool movable)
         {
             LeftToRight = lefttoright;
-            X = lefttoright ? -100 : 420;
+            X = lefttoright ? -130 : 600;
             CanMove = movable;
             CurThread = new Thread(new ThreadStart(Ride));
             CurThread.Start();
@@ -39,10 +41,17 @@ namespace ModelClasses
             while(true)
             {
                 Thread.Sleep(20);
-                if (CanMove)
+                if (CanMove || DontCare)
                     X += 5 * i;
+                if (LeftToRight && X > 10 || !LeftToRight && X < 310)
+                    DontCare = true;
 
             }
+        }
+
+        public void ChangeState()
+        {
+            CanMove = !CanMove;
         }
     }
 }
