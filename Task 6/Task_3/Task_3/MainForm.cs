@@ -15,67 +15,18 @@ namespace Task_3
     public partial class MainForm : Form
     {
 
-        Type T;
-        List<Type> classes;
-        Type _currentClass;
-        object _constrclass;
-
         public MainForm()
         {
             InitializeComponent();
-            Student = new ClassLibrary.HomeLearningStudent();
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int index = comboBox1.SelectedIndex;
-            _currentClass = classes[index];
-            MethodInfo[] marr = _currentClass.GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public);
-            ParameterInfo[] param = _currentClass.GetConstructors()[0].GetParameters();
-            object[] ConstrParams;
-            if (param.Length == 2)
-                ConstrParams = UtilitiesForRandom.CreateRndBus();
-            else ConstrParams = UtilitiesForRandom.CreateRndTram();
-            _constrclass = ReflexyUse.ConstrClass(_currentClass, ConstrParams);
-
-            foreach (MethodInfo m in marr)
-            {
-                comboBox2.Items.Add(m.Name);
-            }
+            Student = new HomeLearningStudent();
 
         }
 
-        ClassLibrary.HomeLearningStudent Student;
+        HomeLearningStudent Student;
 
         private void RndActionButton_Click(object sender, EventArgs e)
         {
-
-            if (openFileDialog1.ShowDialog() != DialogResult.OK)
-                return;
-
-            Assembly assembly = Assembly.LoadFrom(openFileDialog1.FileName);
-            classes = new List<Type>();
-            classes = ReflexyUse.GetInterfaces(assembly);
-            foreach (Type cl in classes)
-            {
-                comboBox1.Items.Add(cl.FullName);
-            }
-
-
-
-        }
-    }
-}
-
-
-/*
- 
-     
-     
-     
-     
-                 string[] a = { "School marks", "Recomendation", "Passport" }, s = {"Math","Progs","History"};
+            string[] a = { "School marks", "Recomendation", "Passport" }, s = { "Math", "Progs", "History" };
             Student.Documents = a;
             Student.Schedule = s;
             Student.Speciality = "Toilet cleaner";
@@ -84,9 +35,7 @@ namespace Task_3
             Student.CostOfEducation = r.Next(70000, 480000);
             Student.ExamQuantity = r.Next(1, 6);
 
-
-
-            switch (r.Next(1,10))
+            switch (r.Next(1, 10))
             {
                 case 1:
                     {
@@ -107,7 +56,7 @@ namespace Task_3
                     }
                 case 3:
                     {
-                        
+
                         label3.Text = "";
                         label1.Text = "";
                         label2.Text = "Student's docs are weird: ";
@@ -125,7 +74,7 @@ namespace Task_3
                     }
                 case 5:
                     {
-                        
+
                         label2.Text = "";
                         label1.Text = "";
                         label3.Text = "Internal exam result: " + Student.PassInternalExam();
@@ -143,7 +92,7 @@ namespace Task_3
                         break;
                     }
                 case 7:
-                    { 
+                    {
                         label2.Text = "Monday schedule: ";
                         for (int i = 0; i < Student.Schedule.Length - 1; i++)
                             label2.Text += Student.Schedule[i] + ", ";
@@ -186,8 +135,9 @@ namespace Task_3
                         break;
                     }
             }
-            
-     
-     
-     
-     */
+        }
+    }
+}
+
+
+
