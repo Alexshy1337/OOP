@@ -10,7 +10,8 @@ namespace ModelClasses
     public class RoadModel
     {
         private Random r { get; set; } = new Random();
-        public bool CurLight { get; set; } = false; //red light
+        public bool CurLight { get; set; }
+        public bool HasCrash { get; set; }
         private int CrashTimer { get; set; } = 0;//счётчик для аварий(чтобы они происходили не слишком часто)
         private int LightTimer { get; set; } = 0;//счётчик для светофора
         public Drawer DrawUnit { get; set; }
@@ -23,9 +24,10 @@ namespace ModelClasses
 
         public RoadModel()
         {
-            DrawUnit = new Drawer();
             Cars = new List<Car>();
             Ppl = new List<Man>();
+            DrawUnit = new Drawer(Cars, Ppl);
+            LightChangedEvent += DrawUnit.ChangeLight;
             UpdThread = new Thread(new ThreadStart(Update));
             AddThread = new Thread(new ThreadStart(Additions));
             UpdThread.Start();
@@ -36,14 +38,14 @@ namespace ModelClasses
         {
             while(true)
             {
-                if (Cars.Count < 4 && r.Next(0, 1000) > 500)
+                if (Cars.Count < 4 && r.Next(0, 1000) > 500 && !HasCrash)
                 {
                     Cars.Add(new Car(r.Next(0, 1000) > 500, !CurLight));
                     LightChangedEvent += Cars.Last().ChangeState;
                 }
                 Thread.Sleep(1000);
 
-                if (Ppl.Count < 4 && r.Next(0, 1000) > 500)
+                if (Ppl.Count < 4 && r.Next(0, 1000) > 500 && !HasCrash)
                 {
                     Ppl.Add(new Man(r.Next(0, 1000) > 500, CurLight) { X = r.Next(162, 260) });
                     LightChangedEvent += Ppl.Last().ChangeState;
@@ -56,7 +58,7 @@ namespace ModelClasses
         {
             while(true)
             {
-                //CrashTimer++;
+                CrashTimer++;
                 LightTimer++;
                 //if (Ppl.Count > 1)
                 //    CheckPplCollisions();
@@ -97,17 +99,13 @@ namespace ModelClasses
 
         void CheckCarCollisions()
         {
-            //checking
-            //if( (car1 && car2 are close && moving in different directions)
-            //&& crash_clock > needed_value && random.Next(0, 1000) > 900)
-            //
-            lock(Cars)
+            lock (Cars)
             {
-                for(int i = 0; i < Cars.Count - 1; i++)
+                for (int i = 0; i < Cars.Count - 1; i++)
                 {
                     if (Cars[i].LeftToRight == Cars[i + 1].LeftToRight && (Math.Abs(Cars[i + 1].X - Cars[i].X)) < 135)
                     {
-                        if(Cars[i].LeftToRight)
+                        if (Cars[i].LeftToRight)
                         {
                             if (Cars[i].X < Cars[i + 1].X)
                             {
@@ -126,15 +124,21 @@ namespace ModelClasses
                     //if(Cars[i].LeftToRight == Cars[i + 1].LeftToRight)
                     //{
                     //random & 
-
+                    if (((Math.Abs(Cars[i + 1].X - Cars[i].X)) < 115 && Cars[i].LeftToRight != Cars[i + 1].LeftToRight)
+                        && CrashTimer > 500 && r.Next(0, 1000) > 900)
+                    {
+                        Cars[i + 1].CurThread.Abort();
+                        LightChangedEvent -= Cars[i + 1].ChangeState;
+                        Cars[i + 1].IsBrocken = true;
+                        CrashTimer = 0;
+                        Cars[i].CurThread.Abort();
+                        LightChangedEvent -= Cars[i].ChangeState;
+                        Cars.Remove(Cars[i]);
+                        HasCrash = true;
+                    }
                 }
 
             }
-        }
-
-        void CheckPplCollisions()
-        {
-
         }
 
         public void StopSimulation()

@@ -10,6 +10,7 @@ namespace ModelClasses
     {
         public bool CanMove { get; set; } = true;
         public bool DontCare { get; set; }
+        public bool ReachedStopLine { get; set; }
         public bool LeftToRight { get; set; }
         public bool IsBrocken { get; set; }
         public int X { get; set; }
@@ -41,12 +42,14 @@ namespace ModelClasses
             while(true)
             {
                 Thread.Sleep(20);
-                if (CanMove || DontCare)
+                if (CanMove || DontCare || LeftToRight && X < 0 || X > 316 && !LeftToRight)
                     X += 5 * i;
                 if (LeftToRight && X > 10 || !LeftToRight && X < 310)
                     DontCare = true;
 
+
             }
+
         }
 
         public void ChangeState()

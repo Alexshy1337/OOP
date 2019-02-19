@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace ModelClasses
 {
@@ -11,15 +11,37 @@ namespace ModelClasses
         public bool IsLoaded { get; set; }
         public bool LeftToRight { get; set; }
         public int X { get; set; }
-        public delegate void CrashTarget(Car sender);
+        private Thread CurThread { get; set; }
+        public delegate void CrashTarget();
         public CrashTarget onCrash;
 
+        public CrashService()
+        {
+            CurThread = new Thread(new ThreadStart(CleanUp));
+
+        }
 
         public void CleanUp()
         {
-            throw new NotImplementedException();
+            while(true)
+            {
+                if (onCrash != null)
+                {
+                    lock(this)
+                    {
+                        onCrash();
+                    }
+                }
+            }
+
+
+
         }
 
+        public void Stop()
+        {
+            CurThread.Abort();
+        }
 
     }
 }

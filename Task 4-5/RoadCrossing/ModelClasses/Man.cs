@@ -39,7 +39,7 @@ namespace ModelClasses
             i = ToptoBottom ? 1 : -1;
             while (true)
             {
-                if (CanMove || DontCare)
+                if (CanMove || DontCare || ToptoBottom && Y < 35 || !ToptoBottom && Y > 248)
                     Y += 3 * i;
                 if(ToptoBottom && Y > 50 || !ToptoBottom && Y < 235)
                     DontCare = true;

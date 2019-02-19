@@ -9,6 +9,16 @@ namespace ModelClasses
 {
     public class Drawer
     {
+        public bool CurLight { get; set; }
+        public List<Car> Cars { get; set; }
+        public List<Man> Ppl { get; set; }
+
+        public Drawer(List<Car> c, List<Man> p)
+        {
+            Cars = c;
+            Ppl = p;
+        }
+
         void DrawCar(Graphics g, Car car)
         {
             if (car.IsBrocken)
@@ -72,29 +82,32 @@ namespace ModelClasses
         }
 
         //MAIN METHOD
-        public void DrawFrame(Bitmap bit, List<Car> cars, List<Man> ppl, CrashService crashService = null, bool isGreen = false)
+        public void DrawFrame(Bitmap bit, CrashService crashService = null)
         {
             Graphics g = Graphics.FromImage(bit);
 
             g.DrawImage(Properties.GraphicsRes.BackgroundImg, new Rectangle(0, 0, bit.Width, bit.Height));
-            if(cars != null)
-                for (int i = 0; i < cars.Count; i++)
-                    DrawCar(g, cars[i]);
-            if (ppl != null)
-                for (int i = 0; i < ppl.Count; i++)
-                    DrawMan(g, ppl[i]);
+            if(Cars != null)
+                for (int i = 0; i < Cars.Count; i++)
+                    DrawCar(g, Cars[i]);
+            if (Ppl != null)
+                for (int i = 0; i < Ppl.Count; i++)
+                    DrawMan(g, Ppl[i]);
             if (crashService != null) 
                 DrawCrashService(g, crashService);
-            DrawLight(g, isGreen);
+            DrawLight(g, CurLight);
 
-            g.DrawString("Cars: " + cars.Count.ToString() + " Ppl: " + ppl.Count.ToString(),
+            g.DrawString("Cars: " + Cars.Count.ToString() + " Ppl: " + Ppl.Count.ToString(),
                 SystemFonts.DefaultFont, Brushes.Black, bit.Width - 100, bit.Height - 30);
 
 
             g.Dispose();
         }
 
-
+        public void ChangeLight()
+        {
+            CurLight = !CurLight;
+        }
 
 
 
