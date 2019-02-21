@@ -58,6 +58,7 @@ namespace RoadCrossing
         {
             SB1.Visible = false;
             models[0] = new RoadModel();
+            models[0].LocalCrashService = crashServices[0];
             Panel1.Invalidate();
         }
 

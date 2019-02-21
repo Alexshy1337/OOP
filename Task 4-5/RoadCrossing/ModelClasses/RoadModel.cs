@@ -19,6 +19,7 @@ namespace ModelClasses
         public List<Man> Ppl { get; set; }
         private Thread UpdThread { get; set; }
         private Thread AddThread { get; set; }
+        public CrashService LocalCrashService { get; set; }
         event Action LightChangedEvent;
         event Action CrashEvent;
 
@@ -65,6 +66,7 @@ namespace ModelClasses
                 //if (Cars.Count > 1)
                 //    CheckCarCollisions();
                 Thread.Sleep(5);
+
                 if(LightTimer > 500)
                 {
                     CurLight = !CurLight;
@@ -75,6 +77,8 @@ namespace ModelClasses
                     catch (NullReferenceException) { }
                     LightTimer = 0;
                 }
+
+                //удаление объектов, закончивших своё перемещение по экрану
                 for (int i = 0; i < Cars.Count; i++)
                 {
                     if (Cars[i].X < -150 || Cars[i].X > 650)
@@ -103,29 +107,29 @@ namespace ModelClasses
             {
                 for (int i = 0; i < Cars.Count - 1; i++)
                 {
-                    if (Cars[i].LeftToRight == Cars[i + 1].LeftToRight && (Math.Abs(Cars[i + 1].X - Cars[i].X)) < 135)
-                    {
-                        if (Cars[i].LeftToRight)
-                        {
-                            if (Cars[i].X < Cars[i + 1].X)
-                            {
-                                Cars[i].ObstacleX = Cars[i + 1].X;
-                                Cars[i].CanMove = false;
-                            }
-                            else
-                            {
-                                Cars[i].ObstacleX = Cars[i + 1].X;
-                                Cars[i].CanMove = false;
-                            }
-                        }
-                    }
+                    //if (Cars[i].LeftToRight == Cars[i + 1].LeftToRight && (Math.Abs(Cars[i + 1].X - Cars[i].X)) < 135)
+                    //{
+                    //    if (Cars[i].LeftToRight)
+                    //    {
+                    //        if (Cars[i].X < Cars[i + 1].X)
+                    //        {
+                    //            Cars[i].ObstacleX = Cars[i + 1].X;
+                    //            Cars[i].CanMove = false;
+                    //        }
+                    //        else
+                    //        {
+                    //            Cars[i].ObstacleX = Cars[i + 1].X;
+                    //            Cars[i].CanMove = false;
+                    //        }
+                    //    }
+                    //}
 
 
                     //if(Cars[i].LeftToRight == Cars[i + 1].LeftToRight)
                     //{
                     //random & 
-                    if (((Math.Abs(Cars[i + 1].X - Cars[i].X)) < 115 && Cars[i].LeftToRight != Cars[i + 1].LeftToRight)
-                        && CrashTimer > 500 && r.Next(0, 1000) > 900)
+                    if (((Math.Abs(Cars[i + 1].X - Cars[i].X)) < 100 && Cars[i].LeftToRight != Cars[i + 1].LeftToRight)
+                        && CrashTimer > 100 && r.Next(0, 1000) > 900)
                     {
                         Cars[i + 1].CurThread.Abort();
                         LightChangedEvent -= Cars[i + 1].ChangeState;
