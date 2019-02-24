@@ -8,7 +8,7 @@ namespace ModelClasses
 {
     interface ICrashService
     {
-        void CleanUp();
+        void Work();
 
     }
 }

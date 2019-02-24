@@ -10,20 +10,23 @@ namespace ModelClasses
     public class Drawer
     {
         public bool CurLight { get; set; }
+        public bool csVisible { get; set; }
         public List<Car> Cars { get; set; }
         public List<Man> Ppl { get; set; }
+        public CrashService LocalCS { get; set; }
 
-        public Drawer(List<Car> c, List<Man> p)
+        public Drawer(List<Car> c, List<Man> p, CrashService cs)
         {
             Cars = c;
             Ppl = p;
+            LocalCS = cs;
         }
 
         void DrawCar(Graphics g, Car car)
         {
             if (car.IsBrocken)
             {
-                g.DrawImage(Properties.GraphicsRes.CrashImg, new Rectangle(car.X, 110, 115, 90), new Rectangle(0, 0, 1200, 927), GraphicsUnit.Pixel);
+                g.DrawImage(Properties.GraphicsRes.CrashImg, new Rectangle(car.X, 70, 115, 90), new Rectangle(0, 0, 1200, 927), GraphicsUnit.Pixel);
             }
             else if (car.LeftToRight)
             {
@@ -55,22 +58,7 @@ namespace ModelClasses
 
         void DrawCrashService(Graphics g, CrashService cs)
         {
-            if (cs.LeftToRight)
-            {
-                g.DrawImage(Properties.GraphicsRes.CrashServiceImg, new Rectangle(cs.X, 50, 180, 90), new Rectangle(0, 0, 1667, 833), GraphicsUnit.Pixel);
-            }
-            else
-            {
-                Image temp = Properties.GraphicsRes.CrashServiceImg;
-                temp.RotateFlip(RotateFlipType.RotateNoneFlipX);
-                g.DrawImage(temp, new Rectangle(cs.X, 130, 180, 90), new Rectangle(0, 0, 1667, 833), GraphicsUnit.Pixel);
-                temp.Dispose();
-            }
-
-            //if(IsLoaded)
-
-            //DrawCrash
-
+            g.DrawImage(Properties.GraphicsRes.CrashServiceImg, new Rectangle(cs.X, 70, 180, 90), new Rectangle(0, 0, 1667, 833), GraphicsUnit.Pixel);
         }
 
         void DrawLight(Graphics g, bool isGreen)
@@ -82,7 +70,7 @@ namespace ModelClasses
         }
 
         //MAIN METHOD
-        public void DrawFrame(Bitmap bit, CrashService crashService = null)
+        public void DrawFrame(Bitmap bit)
         {
             Graphics g = Graphics.FromImage(bit);
 
@@ -93,8 +81,8 @@ namespace ModelClasses
             if (Ppl != null)
                 for (int i = 0; i < Ppl.Count; i++)
                     DrawMan(g, Ppl[i]);
-            if (crashService != null) 
-                DrawCrashService(g, crashService);
+            if (csVisible) 
+                DrawCrashService(g, LocalCS);
             DrawLight(g, CurLight);
 
             g.DrawString("Cars: " + Cars.Count.ToString() + " Ppl: " + Ppl.Count.ToString(),

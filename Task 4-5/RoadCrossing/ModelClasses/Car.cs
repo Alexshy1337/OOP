@@ -10,11 +10,9 @@ namespace ModelClasses
     {
         public bool CanMove { get; set; } = true;
         public bool DontCare { get; set; }
-        public bool ReachedStopLine { get; set; }
         public bool LeftToRight { get; set; }
         public bool IsBrocken { get; set; }
         public int X { get; set; }
-        public int ObstacleX { get; set; }
         public Thread CurThread { get; set; }
 
         public Car(bool movable)
@@ -46,10 +44,9 @@ namespace ModelClasses
                     X += 5 * i;
                 if (LeftToRight && X > 10 || !LeftToRight && X < 310)
                     DontCare = true;
-
-
+                if (X > 1000 || X < -1000)
+                    CurThread.Abort();
             }
-
         }
 
         public void ChangeState()

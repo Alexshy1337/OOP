@@ -57,8 +57,7 @@ namespace RoadCrossing
         private void SB1_Click(object sender, EventArgs e)
         {
             SB1.Visible = false;
-            models[0] = new RoadModel();
-            models[0].LocalCrashService = crashServices[0];
+            models[0] = new RoadModel(crashServices[0]);
             Panel1.Invalidate();
         }
 
@@ -76,7 +75,7 @@ namespace RoadCrossing
         private void SB2_Click(object sender, EventArgs e)
         {
             SB2.Visible = false;
-            models[1] = new RoadModel();
+            models[1] = new RoadModel(crashServices[0]);
             Panel2.Invalidate();
         }
 
@@ -95,7 +94,7 @@ namespace RoadCrossing
         private void SB3_Click(object sender, EventArgs e)
         {
             SB3.Visible = false;
-            models[2] = new RoadModel();
+            models[2] = new RoadModel(crashServices[1]);
             Panel3.Invalidate();
         }
 
@@ -114,7 +113,7 @@ namespace RoadCrossing
         private void SB4_Click(object sender, EventArgs e)
         {
             SB4.Visible = false;
-            models[3] = new RoadModel();
+            models[3] = new RoadModel(crashServices[1]);
             Panel4.Invalidate();
         }
 
@@ -146,6 +145,12 @@ namespace RoadCrossing
                     r.StopSimulation();
                 foreach (CrashService c in crashServices)
                     c.Stop();
+                MainTimer.Stop();
+                foreach (RoadModel r in models)
+                    r.StopSimulation();
+                foreach (CrashService c in crashServices)
+                    c.Stop();
+
             }
             catch (NullReferenceException) { }
         }

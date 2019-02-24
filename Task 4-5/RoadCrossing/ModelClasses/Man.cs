@@ -13,7 +13,6 @@ namespace ModelClasses
         public bool ToptoBottom { get; set; }
         public int Y { get; set; }
         public int X { get; set; }
-        public int ObstacleY { get; set; }
         public Thread CurThread { get; set; }
 
         public Man(bool movable)

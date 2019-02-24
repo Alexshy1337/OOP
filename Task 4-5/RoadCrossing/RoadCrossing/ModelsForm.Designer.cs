@@ -156,7 +156,10 @@
             this.ClientSize = new System.Drawing.Size(1212, 692);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ModelsForm";
+            this.ShowIcon = false;
             this.Text = "Road Crossing";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ModelsForm_FormClosed);
             this.tableLayoutPanel1.ResumeLayout(false);

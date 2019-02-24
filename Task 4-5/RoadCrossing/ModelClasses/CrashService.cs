@@ -8,8 +8,7 @@ namespace ModelClasses
 {
     public class CrashService : ICrashService
     {
-        public bool IsLoaded { get; set; }
-        public bool LeftToRight { get; set; }
+        public bool IsInFrame { get; set; }
         public int X { get; set; }
         private Thread CurThread { get; set; }
         public delegate void CrashTarget();
@@ -17,19 +16,22 @@ namespace ModelClasses
 
         public CrashService()
         {
-            CurThread = new Thread(new ThreadStart(CleanUp));
-
+            X = -500;
+            CurThread = new Thread(new ThreadStart(Work));
+            CurThread.Start();
         }
 
-        public void CleanUp()
+        public void Work()
         {
             while(true)
             {
+                Thread.Sleep(900);
                 if (onCrash != null)
                 {
                     lock(this)
                     {
                         onCrash();
+                        X = -500;
                     }
                 }
             }
