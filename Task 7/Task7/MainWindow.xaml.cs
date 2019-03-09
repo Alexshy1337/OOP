@@ -31,7 +31,6 @@ namespace Task7
     /// </summary>
     public partial class MainWindow : Window
     {
-        public RepresentController BBRepresentController { get; set; }
         public RepresentController CandleRepresentController { get; set; }
 
         public MainWindow()
@@ -40,10 +39,9 @@ namespace Task7
 
             IncomingDataController controller =
                 new IncomingDataController(new ExcelDataProvider(new FileInfo(@"Sources\prices.xlsx")));
-            controller.StartReceive(1000);
+            controller.StartReceive(500);
             controller.DataReceived += Controller_DataReceived;
 
-            BBRepresentController = new BBController(50);
             CandleRepresentController = new CandleRepresentController(50);
             DataContext = this;
         }
@@ -105,8 +103,8 @@ namespace Task7
                 HighValue = data.High;
                 LowValue = data.Low;
                 LastTime = data.Time.ToString();
-                BBRepresentController.AddValueToLine(data, (x) => x.Close);//TODO: check what this line does
                 CandleRepresentController.AddValueToLine(data, (x) => x.Close);
+                //check out lambda expr
             }
         }
 
